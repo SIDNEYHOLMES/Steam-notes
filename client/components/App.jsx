@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Library from './pages/Library.jsx';
 import Navbar from './Navbar.jsx';
+import Leaderboard from './pages/Leaderboard.jsx';
 
 
 export const App = () => {
@@ -15,8 +16,9 @@ export const App = () => {
       <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/library' element={<Library/>} /> 
+          <Route path='/leaderboard' element={<Leaderboard/>} />
       </Routes>
     </BrowserRouter>
     </div>
   )
-}
+};
