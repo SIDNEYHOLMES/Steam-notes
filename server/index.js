@@ -15,4 +15,14 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use('/', express.static(path.resolve('dist')));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.listen(PORT, () => console.log(`Server listening on port:${PORT}`))

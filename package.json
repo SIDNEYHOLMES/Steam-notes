@@ -1,22 +1,23 @@
 {
-  "name": "frostpzl",
+  "name": "steamnotes",
   "version": "1.0.0",
   "description": "puzzle app with user selected images and piece number",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js --mode production"
+    "build": "webpack --config webpack.config.js --mode production",
+    "start": "nodemon ./server/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SIDNEYHOLMES/frostpzl.git"
+    "url": "git+https://github.com/SIDNEYHOLMES/Steam-notes.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SIDNEYHOLMES/frostpzl/issues"
+    "url": "https://github.com/SIDNEYHOLMES/Steam-notes/issues"
   },
-  "homepage": "https://github.com/SIDNEYHOLMES/frostpzl#readme",
+  "homepage": "https://github.com/SIDNEYHOLMES/Steam-notes#readme",
   "dependencies": {
     "babel": "^6.23.0",
     "babel-loader": "^9.1.2",
@@ -24,7 +25,8 @@
     "express-session": "^1.17.3",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
