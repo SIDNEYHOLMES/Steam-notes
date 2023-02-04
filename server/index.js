@@ -15,8 +15,10 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// use the transpiler dist
 app.use('/', express.static(path.resolve('dist')));
 
+// route react router urls correctly
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
     if (err) {
@@ -25,4 +27,5 @@ app.get('/*', function(req, res) {
   })
 })
 
+// server is listening
 app.listen(PORT, () => console.log(`Server listening on port:${PORT}`))
