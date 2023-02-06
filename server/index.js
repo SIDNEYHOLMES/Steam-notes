@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path')
 const session = require('express-session')
+const rootRouter = require('./routes');
 
 const app = express();
 const PORT = 8080;
@@ -15,8 +16,12 @@ app.use(session({
   saveUninitialized: false
 }));
 
+
 // use the transpiler dist
 app.use('/', express.static(path.resolve('dist')));
+
+// set routes
+app.use('/api', rootRouter)
 
 // route react router urls correctly
 app.get('/*', function(req, res) {
