@@ -5,7 +5,6 @@ dotenv.config()
 
 const steam = express.Router();
 
-const url = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_KEY}&steamid=76561198126162546&include_appinfo=true`;
 
 const headers = {
   'Content-Type': 'text/html; charset=UTF-8',
@@ -15,10 +14,13 @@ const headers = {
   'accept-encoding': 'false',
 }
 
-steam.get('/library', (req, res) => {
-  axios.get(url, { headers })
-  .then(data => res.status(200).send(data))
-  .catch(err => console.log(err, 'err'))
+steam.get('/library:steamId', (req, res) => {
+  const { steamId } = req.params;
+  const url = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_KEY}&steamid=${steamId}&include_appinfo=true`;
+ axios.get(url)
+ .then(data => res.send(data.data).status(200))
+ .catch(err => console.log(err));
+
 });
 
 module.exports = steam;
