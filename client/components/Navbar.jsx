@@ -15,6 +15,9 @@ const Navbar = () => {
     <li>
       <Link to={'/leaderboard'}>Leaderboard</Link>
     </li>
+    <li>
+      Log in with steam
+    </li>
   </ul>
   </nav>
   </>
