@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Login } from './Login.jsx';
 
 const Navbar = () => {
   return (
@@ -16,7 +17,7 @@ const Navbar = () => {
       <Link to={'/leaderboard'}>Leaderboard</Link>
     </li>
     <li>
-      Log in with steam
+       <Login/>
     </li>
   </ul>
   </nav>

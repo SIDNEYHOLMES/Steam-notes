@@ -1,7 +1,8 @@
 const express = require('express');
-const path = require('path')
-const {MongoClient} = require('mongodb');
-const session = require('express-session')
+const path = require('path');
+const User = require('./db');
+const findOrCreate = require('mongoose-find-or-create');
+const session = require('express-session');
 const rootRouter = require('./routes');
 const passport = require('passport');
 const SteamStrategy = require('passport-steam').Strategy;
@@ -19,7 +20,11 @@ app.use(session({
   saveUninitialized: false
 }));
 app.use(passport.initialize());
-app.use(passport.session());               
+app.use(passport.session());
+ 
+//passport serialization for storing user data.
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((obj, done) => done(null, obj));
 
 //passport-steam strategy
 passport.use(
@@ -27,16 +32,44 @@ passport.use(
     returnURL: 'http://localhost:8080/auth/steam/return',
     realm: 'http://localhost:8080',
     apiKey: `${process.env.STEAM_KEY}`
-  })
-)
-
+  },
+  // if the user is not found create that user via mongoose
+  function(id, profile, done) {
+    profile.profileUrl = id;
+    console.log(profile)
+    return done(null, profile);
+}));
 // use the transpiler dist
 app.use('/', express.static(path.resolve('dist')));
 
 // set routes
 app.use('/api', rootRouter)
 
+// passport steam authentication routes
+
+// if the authentication route works or dosesent it will still send to the home
+app.get('/auth/steam', passport.authenticate('steam', {
+  failureRedirect: '/'
+}),
+ function(req, res) {
+  res.redirect('/');
+ });
+
+app.get('/auth/steam/return', passport.authenticate('steam', {
+  failureRedirect: '/'
+}),
+ function(req, res) {
+  res.redirect('/');
+ });
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  console.log('ERROR 404')
+});
+
 // route react router urls correctly
+
+
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
     if (err) {
