@@ -10,6 +10,7 @@ mongoose.connect(mongoUri)
     displayName: { type: String, required: true},
     steamId: { type: String, required: true },
     profileUrl: { type: String, required: true },
+    profileImg: { type: String, required: true},
   });
 
 

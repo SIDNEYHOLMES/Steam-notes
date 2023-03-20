@@ -16,9 +16,7 @@ const Navbar = () => {
     <li>
       <Link to={'/leaderboard'}>Leaderboard</Link>
     </li>
-    <li>
        <Login/>
-    </li>
   </ul>
   </nav>
   </>

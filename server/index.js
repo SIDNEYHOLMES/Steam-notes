@@ -35,14 +35,15 @@ passport.use(
    async function(identifier, profile, done) {
      try {
        const user = await User.findOne({ steamId: profile.id });
+       user.profileImg = profile.photos[0].value;
        if (!user) {
          const newUser = new User({
            steamId: profile.id,
            displayName: profile.displayName,
-           profileUrl: profile._json.profileurl
+           profileUrl: profile._json.profileurl,
+           profileImg: profile.photos[0].value
           });
           await newUser.save();
-          console.log(newUser, 'user saved to db');
           done(null, newUser);
         } else {
           done(null, user);

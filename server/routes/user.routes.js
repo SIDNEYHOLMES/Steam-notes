@@ -7,9 +7,9 @@ user.get('/current', (req, res) => {
 })
 
 user.get('/logout', (req, res) => {
-  console.log(req.user);
-  req.logout((err) => console.log(req.user));
-  res.sendStatus(200);
+  req.logout((err) => console.log('logged out (:'));
+  res.status(200)
+  res.redirect('/')
 })
 
 module.exports = user;

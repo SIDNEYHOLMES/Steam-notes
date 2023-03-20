@@ -16,13 +16,20 @@ export const Login = () => {
     axios.get('/api/user/logout')
       .then(data => data)
       .catch(err => console.log(err));
+    window.location.reload();
   }
 
 useEffect(checkUser, [])
   return (
     <div>
-      <p><a href='auth/steam'>login with steam</a></p>
-      <button onClick={logout}>Logout of steam</button>
+      { user ? 
+      <div>
+        <img src={user.profileImg} alt='profileimg' />
+        <p>{`${user.displayName}`}</p>
+        <button onClick={logout}>Logout of steam</button> 
+        <button onClick={() => console.log(user)} >log user data</button>
+      </div>: 
+      <p><a href='auth/steam'>login with steam</a></p>}
     </div>
   )
 }
