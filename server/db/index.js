@@ -1,19 +1,17 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-const passport = require('passport');
-const mongoUri = 'mongodb://localhost/auth';
+const mongoUri = 'mongodb://localhost/steam-notes';
 
 mongoose.connect(mongoUri)
   .then(() => console.log('connected to mongodb'))
   .catch(err => console.log('error when attempting to connect to mongodb'));
 
   const UserSchema = new Schema({ 
-    _id: Number,
-    name: String,
-    steamId: String,
-    games: Array,
-    steamGames: Array,
+    displayName: { type: String, required: true},
+    steamId: { type: String, required: true },
+    profileUrl: { type: String, required: true },
   });
+
 
   const User = model('User', UserSchema);
 
