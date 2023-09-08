@@ -9,7 +9,6 @@ export const Login = () => {
     axios.get('/api/user/current')
     .then(({ data }) => setUser(data))
     .catch(err => console.log(err));
-    console.log(user)
   }
 
   const logout = () => {

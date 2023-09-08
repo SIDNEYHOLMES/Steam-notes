@@ -11,6 +11,7 @@ mongoose.connect(mongoUri)
     steamId: { type: String, required: true },
     profileUrl: { type: String, required: true },
     profileImg: { type: String, required: true},
+    libraryScore: { type: Number, required: true}
   });
 
 
